@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Support</title>
+    <link rel="icon" href="/img/icon.png" type="image/png" sizes="32x32">
+    <link rel="stylesheet" th:href="@{/main.css}">
+</head>
+<body>
+<div th:replace="/layouts/header :: header"></div>
+    <main class="container">
+        <div class="formAdd">
+            <form th:action="'/support/ask'" class="formAdd">
+                <textarea name="question" id="areaAsk" placeholder="Enter your question"></textarea>
+                <button type="submit" class="btn-edit">Ask question</button>
+            </form>
+        </div>
+        <div th:if="${!user.supports.isEmpty()}">
+            <div th:each="el : ${user.supports}">
+                <p th:text="${el.question}" class="questions"/>
+                <p th:text="${el.answer}" class="answer"/>
+            </div>
+        </div>
+    </main>
+    <form th:action="@{/}">
+                <button type="submit" class="btn-edit">Return</button>
+    </form>
+<div th:replace="/layouts/footer :: footer"></div>
+</body>
+</html>

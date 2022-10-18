@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${item.title}">Title</title>
+    <link rel="icon" href="/img/icon.png" type="image/png" sizes="32x32">
+    <link rel="stylesheet" th:href="@{/main.css}">
+</head>
+<div th:replace="/layouts/header :: header"></div>
+<body>
+<main class="container">
+    <span sec:authorize="hasAuthority('ADMIN')" th:text="'Was added '+${item.user.username}" style="font-weight: bold"></span>
+<div class="itemSingle">
+    <img th:src="${item.image}" th:alt="${item.title}">
+    <h3 th:text="${item.title}"/>
+    <p th:text="${item.info}"/>
+    <h3><p th:text="'Number of seller: '+${item.phoneNumber}"/></h3>
+    <span th:text="${item.price} + 'BYN'"/>
+</div>
+</main>
+<div th:if="${!bool}">
+<form th:action="@{'http://localhost:8080/item/' + ${item.id} + '/update'}" sec:authorize="hasAuthority('ADMIN') || hasAuthority('REDACTOR')">
+    <button class="btn-edit"><h3>Update</h3></button>
+</form>
+<form method="post" th:action="@{'http://localhost:8080/item/' + ${item.id} + '/delete'}" sec:authorize="hasAuthority('ADMIN')">
+    <button class="btn-edit"><h3>Delete</h3></button>
+</form>
+</div>
+<div th:if="${bool}" sec:authorize="isAuthenticated()">
+    <form th:action="@{'http://localhost:8080/item/' + ${item.id} + '/update'}">
+        <button class="btn-edit"><h3>Update</h3></button>
+    </form>
+    <form method="post" th:action="@{'http://localhost:8080/item/' + ${item.id} + '/delete'}">
+        <button class="btn-edit"><h3>Delete</h3></button>
+    </form>
+</div>
+<div th:replace="/layouts/footer :: footer"></div>
+</body>
+</html>

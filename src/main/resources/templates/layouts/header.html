@@ -1,0 +1,22 @@
+<header class="container" xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+        th:fragment="header">
+    <span class="logo">Dog shop</span>
+    <nav>
+        <a href="/">Main page</a>
+        <a href="/about-us">About us</a>
+        <span sec:authorize="!isAuthenticated()">
+            <a href="/registration">Registration</a>
+            <a href="/login">Authorization</a></span>
+        <span sec:authorize="isAuthenticated()">
+            <a href="/support">Technical support</a>
+            <a href="/item_user">My items</a>
+            <a href="/item/add">Add item</a>
+            <a href="/user">User's cabinet</a>
+        </span>
+        <span sec:authorize="hasAuthority('ADMIN')">
+            <a href="/panel_admin">Admin's panel</a>
+            <a href="/answer_support">Answer for support</a>
+        </span>
+    </nav>
+</header>

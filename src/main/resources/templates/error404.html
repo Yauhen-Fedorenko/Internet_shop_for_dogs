@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Error404</title>
+    <link rel="icon" href="/img/icon.png" type="image/png" sizes="32x32">
+    <link rel="stylesheet" th:href="@{/main.css}">
+</head>
+<body>
+<div th:replace="/layouts/header :: header"></div>
+<main class="container">
+    <h1>Error404</h1>
+    <div class="formAdd"><h2>This page isn't exist, please return to <a href="/">Main page</a></h2></div>
+</main>
+<div th:replace="/layouts/footer :: footer"></div>
+</body>
+</html>

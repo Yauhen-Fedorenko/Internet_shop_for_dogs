@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Authentication</title>
+    <link rel="icon" href="/img/icon.png" type="image/png" sizes="32x32">
+    <link rel="stylesheet" th:href="@{/main.css}">
+</head>
+<body>
+<div th:replace="/layouts/header :: header"></div>
+<main class="formAdd">
+    <h1>Authentication</h1>
+    <form method="post" th:action="@{/login}">
+        <input type="text" name="username" placeholder="Enter your login">
+        <input type="password" name="password" placeholder="Enter your password">
+        <div th:text="${error}" style="color: #de0a20"></div>
+        <button type="submit">Sign in</button>
+        <br/>
+        <a th:href="@{/forgot_pass}" id="forgotLink">Забыли пароль?</a>
+    </form>
+</main>
+<div th:replace="/layouts/footer :: footer"></div>
+</body>
+</html>

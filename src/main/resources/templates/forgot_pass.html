@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Authentication</title>
+    <link rel="icon" href="/img/icon.png" type="image/png" sizes="32x32">
+    <link rel="stylesheet" th:href="@{/main.css}">
+</head>
+<body>
+<div th:replace="/layouts/header :: header"></div>
+<main class="formAdd">
+    <h1>Recovery password</h1>
+    <form method="post" th:action="@{/forgot_pass/login}">
+        <input type="text" name="username" placeholder="Enter your login">
+        <div th:text="${error}" style="color: #de0a20"></div>
+        <button type="submit">Send new password to my email</button>
+    </form>
+</main>
+<div th:replace="/layouts/footer :: footer"></div>
+</body>
+</html>

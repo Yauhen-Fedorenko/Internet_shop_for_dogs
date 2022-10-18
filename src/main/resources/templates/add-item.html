@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dog shop</title>
+    <link rel="stylesheet" th:href="@{/main.css}">
+    <link rel="icon" href="/img/icon.png" type="image/png" sizes="32x32">
+</head>
+<body>
+<div th:replace="layouts/header :: header"></div>
+<main class="formAdd">
+    <h1>Add item</h1>
+    <form th:action="@{/item/add}" method="post">
+        <input type="text" name="title" placeholder="Enter title of item">
+        <input type="text" name="image" placeholder="Enter name image, placed in folder img, and his expansion">
+        <input type="number" step="0.01" name="price" placeholder="Enter cost of item">
+        <input type="text" name="phoneNumber" placeholder="Enter phone number of seller">
+        <textarea name="info" id="areaAdd" placeholder="Enter description of item"></textarea>
+        <button type="submit">Add item</button>
+    </form>
+</main>
+<div th:replace="layouts/footer :: footer"></div>
+</body>
+</html>

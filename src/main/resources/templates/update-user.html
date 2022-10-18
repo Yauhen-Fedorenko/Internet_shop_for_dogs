@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Update data</title>
+    <link rel="icon" href="/img/icon.png" type="image/png" sizes="32x32">
+    <link rel="stylesheet" th:href="@{/main.css}">
+</head>
+<body>
+<div th:replace="/layouts/header :: header"></div>
+<main class="formAdd">
+    <h1>Update</h1>
+    <div class="formAdd">
+        <form method="post" th:action="@{/user/update}">
+            <input type="text" name="username" th:value="${user.username}" placeholder="Enter your login">
+            <input type="email" name="email" th:value="${user.email}" placeholder="Enter your email">
+            <input type="password" name="password" th:value="${user.password}" placeholder="Enter your password">
+            <input type="password" name="passwordCheck" th:value="${user.password}" placeholder="repeat your password">
+            <div th:text="${error}" style="color: #de0a20"></div>
+            <button type="submit">To update</button>
+        </form>
+    </div>
+</main>
+<div th:replace="/layouts/footer :: footer"></div>
+</body>
+</html>

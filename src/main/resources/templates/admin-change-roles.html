@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>ADMIN MODE_chM</title>
+    <link rel="icon" href="/img/icon.png" type="image/png" sizes="32x32">
+    <link rel="stylesheet" th:href="@{/main.css}">
+</head>
+<body>
+<span sec:authorize="hasAuthority('ADMIN')">
+<div th:replace="/layouts/header :: header"></div>
+    <main class="container">
+        <div class="ChRoles">
+            <h3 th:text="'It is change roles of '+ ${user.username}"/>
+            <form th:action="@{'/panel_admin/change/' + ${user.id} + '/update'}" method="post">
+            <input th:type="checkbox" name="admin" id="admin" th:value="yes"  style="transform: scale(5)">
+            <label for="admin" style="text-underline: white; font-size: 30px">ADMIN</label>
+            <input th:type="checkbox" name="redactor" id="redactor" th:value="yes" style="transform: scale(5)">
+            <label for="redactor" style="text-underline: white; font-size: 30px">REDACTOR</label>
+                <button type="submit" id="btnRCH" class="btn-edit">Change it</button>
+            </form>
+        </div>
+    </main>
+<div th:replace="/layouts/footer :: footer"></div>
+</span>
+</body>
+</html>

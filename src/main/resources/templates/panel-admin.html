@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>ADMIN MODE</title>
+    <link rel="icon" href="/img/icon.png" type="image/png" sizes="32x32">
+    <link rel="stylesheet" th:href="@{/main.css}">
+</head>
+<body>
+<span sec:authorize="hasAuthority('ADMIN')">
+<div th:replace="/layouts/header :: header"></div>
+    <main>
+        <div class="formAdd" th:if="${!myUsers.isEmpty()}">
+            <h3>List of users</h3>
+            <div th:each="el : ${myUsers}">
+                <div class="formAdd">
+                <p th:text="${el.id} + '. ' + ${el.username}"/>
+                <p th:text="'e-mail: ' + ${el.email}"/>
+                <p th:text="'Has next roles: '"/>
+                <div th:each="r : ${el.role}">
+                    <p class="roles" th:text="${r}"/>
+                </div>
+                    <form th:action="'/panel_admin/items/'+${el.id}">
+                        <button type="submit">Items of the user</button>
+                    </form>
+                    <form th:action="'/panel_admin/change_roles/'+${el.id}">
+                        <button type="submit">Change roles of user</button>
+                    </form>
+                    <form th:action="'/panel_admin/delete/'+${el.id}">
+                        <button type="submit">Delete user</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+<div th:replace="/layouts/footer :: footer"></div>
+</span>
+</body>
+</html>

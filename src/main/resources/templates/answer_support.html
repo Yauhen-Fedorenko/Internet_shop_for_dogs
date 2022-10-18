@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Error404</title>
+    <link rel="icon" href="/img/icon.png" type="image/png" sizes="32x32">
+    <link rel="stylesheet" th:href="@{/main.css}">
+</head>
+<body>
+<div th:replace="/layouts/header :: header"></div>
+<main class="container" sec:authorize="hasAuthority('ADMIN')">
+    <div th:if="${!supports.isEmpty()}">
+        <div th:each="el : ${supports}">
+            <form th:action="@{'/answer_support/' + ${el.id}}" method="post">
+                <p th:text="${el.question}" class="questions"/>
+                <div th:if="${!el.answer.isEmpty()}">
+                    <p th:text="${el.answer}" class="answer"/>
+                </div>
+                <div th:if="${el.answer.isEmpty()}">
+                    <textarea name="answer" id="areaAns" placeholder="Ответ для пользователя"></textarea>
+                </div>
+                <button type="submit" class="btn-edit">Ответить</button>
+            </form>
+        </div>
+    </div>
+</main>
+<div th:replace="/layouts/footer :: footer"></div>
+</body>
+</html>

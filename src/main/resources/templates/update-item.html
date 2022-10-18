@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org">
+    <title th:text="${item.title}+' update'">Title</title>
+    <link rel="stylesheet" th:href="@{/main.css}">
+    <link rel="icon" href="/img/icon.png" type="image/png" sizes="32x32">
+</head>
+<body>
+<div th:replace="/layouts/header :: header"></div>
+<main class="formAdd">
+    <h1>Update item</h1>
+    <form method="post" th:action="@{'/item/' + ${item.id} + '/update'}">
+        <input type="text" name="title" th:value="${item.title}" placeholder="Enter title of item">
+        <input type="text" name="image" th:value="${item.image}" placeholder="Enter name image, placed in folder img, and his expansion">
+        <input type="number" step="0.01" name="price" th:value="${item.price}" placeholder="Enter cost of item">
+        <input type="text" name="phoneNumber" th:value="${item.phoneNumber}" placeholder="Enter phone number of seller">
+        <textarea name="info" id="areaAdd" th:text="${item.info}" placeholder="Enter description of item"></textarea>
+        <button type="submit">Update item</button>
+    </form>
+</main>
+<div th:replace="/layouts/footer :: footer"></div>
+</body>
+</html>

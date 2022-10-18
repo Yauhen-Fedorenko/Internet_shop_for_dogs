@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>ADMIN MODE_usItems</title>
+    <link rel="icon" href="/img/icon.png" type="image/png" sizes="32x32">
+    <link rel="stylesheet" th:href="@{/main.css}">
+</head>
+<body>
+<span sec:authorize="hasAuthority('ADMIN')">
+<div th:replace="/layouts/header :: header"></div>
+    <main class="container">
+        <div class="items" th:if="${!user.items.isEmpty()}">
+           <h3 class="info" th:text="'Items of '+${user.username}"/>
+            <div th:each="el : ${user.items}">
+                <img th:src="${el.image}" th:alt="${el.title}">
+                <h3 th:text="${el.title}"/>
+                <p th:text="${el.info}"/>
+            <span th:text="${el.price} + 'BYN'"/>
+            </div>
+        </div>
+        <div class="formAdd" th:if="${user.items.isEmpty()}">
+            <p th:text="${user.username} + ' have nothing'"/>
+        </div>
+    </main>
+    <form th:action="@{/panel_admin}">
+                <button type="submit" class="btn-edit">Return</button>
+    </form>
+<div th:replace="/layouts/footer :: footer"></div>
+</span>
+</body>
+</html>
